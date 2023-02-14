@@ -325,8 +325,7 @@ export default function Home() {
       return (
         <div>
           <div className={styles.description}>
-            Presale has started!!! If your address is whitelisted, Mint a Crypto
-            Dev 🥳
+            Presale has started!! If your address is whitelisted, Mint a NFT!
           </div>
           <button className={styles.button} onClick={presaleMint}>
             Presale Mint 🚀
