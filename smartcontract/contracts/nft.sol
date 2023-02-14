@@ -25,10 +25,10 @@ contract nft is ERC721Enumerable, Ownable {
     nftWhitelist whitelist;
 
     // boolean to keep track of whether the presale started or not
-    bool public presalesStarted;
+    bool public presaleStarted;
 
     // timestamp for when the presale would end
-    uint256 public presalesEnded;
+    uint256 public presaleEnded;
 
     modifier onlyWhenNotPaused {
         require (!_paused, "Contract currently paused.");
@@ -44,13 +44,13 @@ contract nft is ERC721Enumerable, Ownable {
 
     // startPresale starts a presale for the whitelisted addresses
     function startPresale() public onlyOwner {
-        presalesStarted = true;
-        presalesEnded = block.timestamp + 30 minutes;
+        presaleStarted = true;
+        presaleEnded = block.timestamp + 30 minutes;
     }
 
     // presaleMint allows a user to mint one NFT per transaction during the presale
     function presaleMint() public payable onlyWhenNotPaused {
-        require (presalesStarted && block.timestamp < presalesEnded, "Pre-sale is not active.");
+        require (presaleStarted && block.timestamp < presaleEnded, "Pre-sale is not active.");
         require (whitelist.whitelistAddresses(msg.sender), "You are not whitelisted.");
         require (tokenIds < maxTokenIds, "Exceeded maximum NFT supply.");
         require (msg.value >= _price, "Ether sent is not correct.");
