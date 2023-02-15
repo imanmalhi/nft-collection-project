@@ -1,4 +1,4 @@
-export const NFT_CONTRACT_ADDRESS = "0x937a6A8e1cc1D1888eA28D64ae40805620Ba5111";
+export const NFT_CONTRACT_ADDRESS = "0x6Bb1ED4D605653b70D9b085eF79D260EeDced14a";
 export const abi = [
   {
     "inputs": [
@@ -231,6 +231,13 @@ export const abi = [
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "payable",
     "type": "function"
   },
   {

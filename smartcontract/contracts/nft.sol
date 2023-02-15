@@ -60,6 +60,17 @@ contract nft is ERC721Enumerable, Ownable {
         _safeMint(msg.sender, tokenIds);
     }
 
+    // mint allows a user to mint 1 NFT per transaction after the presale has ended.
+    function mint() public payable onlyWhenNotPaused {
+        require(presaleStarted && block.timestamp >=  presaleEnded, "Presale has not ended yet");
+        require(tokenIds < maxTokenIds, "Exceed maximum NFT supply");
+        require(msg.value >= _price, "Ether sent is not correct");
+
+        tokenIds += 1;
+        
+        _safeMint(msg.sender, tokenIds);
+    }
+
     // _baseURI overrides the OZ ERC721 implementation which returned an empty sting for the baseURI
     function _baseURI() internal view virtual override returns (string memory) {
         return _baseTokenURI;
